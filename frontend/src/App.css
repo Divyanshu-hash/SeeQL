@@ -1,0 +1,329 @@
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.02em;
+}
+
+.header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.section {
+  margin-bottom: 28px;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.card:hover {
+  border-color: #35353f;
+}
+
+/* Dataset selector */
+.dataset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.dataset-btn {
+  padding: 14px 16px;
+  text-align: left;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: all var(--transition);
+}
+
+.dataset-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.dataset-btn.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.upload-area {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.upload-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.upload-input {
+  display: none;
+}
+
+.upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.upload-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Data table */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 12px 14px;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tr:hover td {
+  background: rgba(255,255,255,0.02);
+}
+
+.data-table .cell-null {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.table-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* SQL Editor */
+.editor-wrap {
+  position: relative;
+}
+
+.editor-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  resize: vertical;
+  transition: border-color var(--transition);
+}
+
+.editor-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.editor-actions {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.run-btn {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.run-btn:hover {
+  filter: brightness(1.1);
+}
+
+.run-btn:active {
+  transform: scale(0.98);
+}
+
+.run-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Result / Understand / Error */
+.result-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  background: var(--success-soft);
+  color: var(--success);
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.understand-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.understand-list li {
+  padding: 10px 0;
+  padding-left: 20px;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 8px;
+  background: var(--accent-soft);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.9rem;
+}
+
+.error-card {
+  background: var(--error-soft);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.error-card h4 {
+  margin: 0 0 10px 0;
+  color: var(--error);
+  font-size: 0.95rem;
+}
+
+.error-card ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.error-card ul li {
+  margin-bottom: 4px;
+}
+
+/* Learning tip */
+.learning-tip {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.learning-tip strong {
+  color: var(--text);
+}
+
+.example-queries {
+  margin-top: 10px;
+}
+
+.example-queries summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.example-queries pre {
+  margin: 8px 0 0 0;
+  padding: 10px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+}
+
+.example-queries code {
+  font-family: var(--font-mono);
+}
+
+.export-btns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.export-btns button {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  color: var(--text);
+  transition: all var(--transition);
+}
+
+.export-btns button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
