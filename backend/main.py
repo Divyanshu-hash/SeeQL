@@ -1,4 +1,6 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
+from sql_explainer import explain_sql_langchain
+from error_translator import translate_error_langchain
 from sqlalchemy import text
 from database import engine
 from sample_data import insert_sample_data
@@ -15,6 +17,14 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 @app.on_event("startup")
 def startup():
     insert_sample_data(engine)
+
+
+@app.get("/create-session")
+def create_session():
+    user_id = str(uuid.uuid4())[:8]
+    return {
+        "user_id": user_id
+    }
 
 # -------------------------------
 # List sample datasets
@@ -54,7 +64,6 @@ async def upload_dataset(file: UploadFile = File(...)):
 # -------------------------------
 @app.post("/run-query")
 def run_query(query: str):
-    # Basic protection
     forbidden = ["DROP", "DELETE", "UPDATE", "ALTER"]
     if any(word in query.upper() for word in forbidden):
         raise HTTPException(status_code=403, detail="Dangerous query blocked")
@@ -70,10 +79,12 @@ def run_query(query: str):
         }
 
     except Exception as e:
+        explanation = translate_error_langchain(str(e))
         return {
-            "error": str(e)
+            "error_explanation": explanation,
+            "raw_error": str(e),
+            "source": "langchain-groq"
         }
-
 # -------------------------------
 # Export Query Result
 # -------------------------------
@@ -90,4 +101,13 @@ def export_query(query: str, format: str = "csv"):
     return {
         "message": "Export successful",
         "file": file_name
+    }
+
+
+@app.post("/explain-query")
+def explain_query(query: str):
+    steps = explain_sql_langchain(query)
+    return {
+        "steps": steps,
+        "method": "langchain-groq"
     }
